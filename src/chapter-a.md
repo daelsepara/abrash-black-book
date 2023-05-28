@@ -443,7 +443,7 @@ void main() {
 /* Draws a pixel at screen coordinate (X,Y) */
 void DrawDot(int X, int Y) {
    unsigned char far *ScreenPtr;
-   
+
    /* Point to the byte the pixel is in */
 #ifdef __TURBOC__
    ScreenPtr = MK_FP(SCREEN_SEGMENT,
@@ -487,7 +487,7 @@ void DrawCircle(int X, int Y, int Radius, int Color) {
    RadiusSqMinusMajorAxisSq = Radius * Radius;
    /* Set threshold for minor axis movement at (MinorAxis - 0.5)**2 */
    MinorAxisSquaredThreshold = MinorAxis * MinorAxis - MinorAxis;
-   
+
    /* Draw all points along an arc of 1/8th of the circle, drawing
       all 8 symmetries at the same time */
    do {

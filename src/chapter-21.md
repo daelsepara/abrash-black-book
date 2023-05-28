@@ -402,7 +402,7 @@ down from five to four cycles. What next?
 
 Listing 21.2 shows one interesting alternative that doesn't really buy
 us anything. Here, we've eliminated all size prefixes by doing
-byte-sized `MOVs` and `ADDs`, but because the size prefix on `ADD 
+byte-sized `MOVs` and `ADDs`, but because the size prefix on `ADD
 AX,[ESI]`, for whatever reason, didn't cost anything in Listing 21.1,
 our efforts are to no avail—Listing 21.2 still takes 4 cycles per
 checksummed word. What's worth noting about Listing 21.2 is the extent

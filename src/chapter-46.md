@@ -360,7 +360,7 @@ void EraseEntities()
 {
    int i;
    char far *RowPtr;
-   
+
    for (i = 0; i < NUM_ENTITIES; i++) {
       /* Remember the dirty rectangle info for this entity */
       AddDirtyRect(&Entities[i], IMAGE_HEIGHT, IMAGE_WIDTH);
@@ -373,12 +373,12 @@ void EraseEntities()
 }
 /* Add a dirty rectangle to the list. The list is maintained in top-to-bottom,
    left-to-right (YX sorted) order, with no pixel ever included twice, to minimize
-   the number of display memory accesses and to avoid screen artifacts resulting 
+   the number of display memory accesses and to avoid screen artifacts resulting
    from a large time interval between erasure and redraw for a given object or for
-   adjacent objects. The technique used is to check for overlap between the 
-   rectangle and all rectangles already in the list. If no overlap is found, the 
-   rectangle is added to the list. If overlap is found, the rectangle is broken 
-   into nonoverlapping pieces, and the pieces are added to the list by recursive 
+   adjacent objects. The technique used is to check for overlap between the
+   rectangle and all rectangles already in the list. If no overlap is found, the
+   rectangle is added to the list. If overlap is found, the rectangle is broken
+   into nonoverlapping pieces, and the pieces are added to the list by recursive
    calls to this function. */
    void AddDirtyRect(Entity * pEntity, int ImageHeight, int ImageWidth)
 {
@@ -477,9 +477,9 @@ void EraseEntities()
 
 ```nasm
 ; Assembly language helper routines for dirty rectangle animation. Tested with
-; TASM. 
-; Fills a rectangle in the specified buffer. 
-; C-callable as:  
+; TASM.
+; Fills a rectangle in the specified buffer.
+; C-callable as:
 ;  void FillRect(char far * BufferPtr, int RectHeight, int RectWidth,
 ;                   int BufferWidth, int Color);
 ;

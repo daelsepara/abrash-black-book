@@ -404,12 +404,12 @@ clear success.
 **LISTING 69.1 L69-1.C**
 
 ```c
-// Quake's recursive subdivision triangle rasterizer; draws all 
-// pixels in a triangle other than the vertices by splitting an 
+// Quake's recursive subdivision triangle rasterizer; draws all
+// pixels in a triangle other than the vertices by splitting an
 // edge to form a new vertex, drawing the vertex, and recursively
 // processing each of the two new triangles formed by using the
 // new vertex. Results are less accurate than from a precise
-// affine or perspective texture mapper, and drawing boundaries 
+// affine or perspective texture mapper, and drawing boundaries
 // are not identical to those of a precise polygon drawer, although
 // they are consistent between adjacent polygons drawn with this
 // technique.
@@ -463,11 +463,11 @@ split2:
 
 split:
 // split first edge screen x, screen y, texture s, texture t, and z
-// to form a new vertex.  Lighting (index 4) is ignored; the 
-// difference between interpolating lighting and using the same 
-// shading for the entire triangle is unnoticeable for small 
-// triangles, so we just use the lighting for the first vertex of 
-// the original triangle (which was used during set-up to set 
+// to form a new vertex.  Lighting (index 4) is ignored; the
+// difference between interpolating lighting and using the same
+// shading for the entire triangle is unnoticeable for small
+// triangles, so we just use the lighting for the first vertex of
+// the original triangle (which was used during set-up to set
 // d_colormap, used below to look up lit texels)
 	new[0] = (lp1[0] + lp2[0]) >> 1;        // split screen x
 	new[1] = (lp1[1] + lp2[1]) >> 1;        // split screen y
@@ -484,33 +484,33 @@ split:
 
 	z = new[5]>>16;
 
-// point to the pixel's z-buffer entry, looking up the scanline start 
+// point to the pixel's z-buffer entry, looking up the scanline start
 // address based on screen y and adding in the screen x coordinate
 	zbuf = zspantable[new[1]] + new[0];
 
-// draw the split vertex if it's not obscured by something nearer, as 
+// draw the split vertex if it's not obscured by something nearer, as
 // indicated by the z-buffer
 	if (z >= *zbuf)
 	{
 		int     pix;
-		
+
 	// set the z-buffer to the new pixel's distance
 		*zbuf = z;
 
-	// get the texel from the model's skin bitmap, according to 
-	// the s and t texture coordinates, and translate it through 
-	// the lighting look-up table set according to the first 
+	// get the texel from the model's skin bitmap, according to
+	// the s and t texture coordinates, and translate it through
+	// the lighting look-up table set according to the first
 	// vertex for the original (top-level) triangle.  Both s and
 	// t are in 16.16 format
 		pix = d_pcolormap[skintable[new[3]>>16][new[2]>>16]];
 
-	// draw the pixel, looking up the scanline start address 
+	// draw the pixel, looking up the scanline start address
 	// based on screen y and adding in the screen x coordinate
 		d_viewbuffer[d_scantable[new[1]] + new[0]] = pix;
 	}
 
 nodraw:
-// recursively draw the two new triangles we created by adding the 
+// recursively draw the two new triangles we created by adding the
 // split vertex
 	D_PolysetRecursiveTriangle (lp3, lp1, new);
 	D_PolysetRecursiveTriangle (lp3, new, lp2);

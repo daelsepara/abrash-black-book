@@ -168,7 +168,7 @@ the following:
   5. Sort the AET in order of ascending X coordinate.
 
   6. Advance the current Y coordinate by one scan line.
-  
+
   7. If either the AET or GET isn't empty, go to step 2.
 
 ![**Figure 40.3**  *The global and active edge tables as linked lists.*](images/40-03.jpg)

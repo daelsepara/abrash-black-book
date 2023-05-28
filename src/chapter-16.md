@@ -23,23 +23,23 @@ C++. Boiled down, the list looked like this, in order of descending
 importance to buyers:
 
   1. Debugging
-  
+
   2. Documentation
-  
+
   3. Windows development tools
-  
+
   4. High-level Windows support
-  
+
   5. Class library
-  
+
   6. Development cycle efficiency
-  
+
   7. Object-oriented development aids
-  
+
   8. Programming management aids
-  
+
   9. Online help
-  
+
   10. Windows development cycle automation
 
 Is something missing here? You bet your maximum *gluteus* something's
@@ -102,44 +102,44 @@ timed from a RAM disk on a 20 MHz 386.
 ```c
  /* Word-counting program. Tested with Borland C++ in C
     compilation mode and the small model. */
- 
+
  #include <stdio.h>
  #include <fcntl.h>
  #include <sys\stat.h>
  #include <stdlib.h>
  #include <io.h>
- 
- #define  B UFFER_SIZE  0x8000   /* largest chunk of file worked 
+
+ #define  B UFFER_SIZE  0x8000   /* largest chunk of file worked
                                   with at any one time */
  int main(int, char **);
- 
+
  int main(int argc, char **argv) {
     int Handle;
     unsigned int BlockSize;
     long FileSize;
     unsigned long WordCount = 0;
     char *Buffer, CharFlag = 0, PredCharFlag, *BufferPtr, Ch;
- 
+
     if (argc != 2) {
        printf("usage: wc <filename>\n");
        exit(1);
     }
- 
+
     if ((Buffer = malloc(BUFFER_SIZE)) == NULL) {
        printf("Can't allocate adequate memory\n");
        exit(1);
     }
- 
+
     if ((Handle = open(argv[1], O_RDONLY | O_BINARY)) == -1) {
        printf("Can't open file %s\n", argv[1]);
        exit(1);
     }
- 
+
     if ((FileSize = filelength(Handle)) == -1) {
        printf("Error sizing file %s\n", argv[1]);
        exit(1);
     }
- 
+
     /* Process the file in chunks */
     while (FileSize > 0) {
        /* Get the next chunk */
@@ -160,12 +160,12 @@ timed from a RAM disk on a 20 MHz 386.
                      ((Ch >= '0') && (Ch <= '9')) ||
                      (Ch == '\'');
           if ((!CharFlag) && PredCharFlag) {
-             WordCo u nt++; 
+             WordCo u nt++;
           }
        } while (—BlockSize);
     }
- 
-    /*  Catch the last word, if any */ 
+
+    /*  Catch the last word, if any */
     if (CharFlag) {
        WordCount++;
     }
@@ -306,7 +306,7 @@ Check09:
         cmp     al,'9'
         jna     IsAChar
 CheckApostrophe:
-        cmp      al,27h           ;it is a char if an apostrophe 
+        cmp      al,27h           ;it is a char if an apostrophe
         jz      IsAChar
         sub     bl,bl           ;not a char; CharFlag = 0;
         and     bh,bh
@@ -542,7 +542,7 @@ which was indeed as tight as one could imagine, consisting of just a few
 
 ```nasm
 CMP   DH,[EBX+EAX]
-```     
+```
 
 Harmless enough, save for two things. First, EBX happened to be zero at
 this point (a leftover from an earlier version of the code, as it turned
@@ -670,10 +670,10 @@ Table: Table 16.2 The top four word-counting entries.
 ```nasm
  ;  QSCAN3.ASM
  ;  David Stafford
- 
- 
+
+
          COMMENT $
-  
+
 How it works
 ——————
 The idea is to go through the buffer fetching each letter-pair (words
@@ -697,42 +697,42 @@ in-a-word/not-in-a-word status.  The count register is masked to
 remove the high bit and the count of words remains in the count
 register.
  Sound complicated?  You're right!  But it's fast!
-  
+
 The beauty of this method is that no jumps are required, the
 operations are fast, it requires only one table and the process can
 be repeated (unrolled) many times.  QSCAN3 can read 256 bytes without
 jumping.
- 
+
          COMMEND $
                  .model small
                  .code
-  
+
  Test1           macro   x,y             ;9 or 10 bytes
  Addr&x:         mov     di,[bp+y]       ;3 or 4 bytes
                  adc     di,di
                  or      ax,si
                  add     al,[di]
                  endm
-  
+
  Test2           macro   x,y              ;7 or 8 bytes
  Addr&x:         mov     di,[bp+y]        ;3 or 4 bytes
                  adc     di,di
                  add     ah,[di]
                  endm
-  
- Scan            =       128           ;scan 256 bytes at a time 
+
+ Scan            =       128           ;scan 256 bytes at a time
  Buffer          =       4             ;parms
  BufferLength    =       6
  CharFlag        =       8
  WordCount       =       10
-  
+
                  public _ScanBuffer
  _ScanBuffer     proc near
                  push    bp
                  mov     bp,sp
                  push    si
                  push    di
-  
+
                  xor     cx,cx
                  mov     si,[bp+Buffer]       ;si = text buffer
                  mov     ax,[bp+BufferLength] ;dx = length in bytes
@@ -741,7 +741,7 @@ jumping.
  OneByteBuf:
                  mov     ax,seg WordTable
                  mov     es,ax
-  
+
                  mov     di,[bp+CharFlag]
                  mov     bh,[di]             ;bh = old CharFlag
                  mov     bl,[si]             ;bl = character
@@ -756,17 +756,17 @@ jumping.
  NormalBuf:
                  push    bp                  ;(1)
                  pushf                       ;(2)
-  
+
                  cwd                         ;dx = 0
                  mov     cl,Scan
                  div     cx
                  or      dx,dx               ;remainder?
-                 jz      StartAtTheTop       ;nope, do the whole banana 
+                 jz      StartAtTheTop       ;nope, do the whole banana
                  sub     cx,dx
                  sub     si,cx               ;adjust buf pointer
                  sub     si,cx
                  inc     ax                  ;adjust for partial read
- 
+
  StartAtTheTop:  mov     bx,dx               ;get index for start...
                  shl     bx,1
                  mov     di,LoopEntry[bx]    ;...address in di
@@ -781,7 +781,7 @@ jumping.
                  mov     ax,si               ;init local word counter
                  shr     bl,1                ;carry = old CharFlag
                  jmp     di
-  
+
                  align   2
  Top:            add     bx,bx               ;restore carry
  n               =       0
@@ -806,9 +806,9 @@ jumping.
                  dec     dx                ;any left?
                  jng     Quit
                  jmp     Top
-  
+
  Quit:           popf                      ;(2) even or odd buffer?
-                 jnc     ItsEven 
+                 jnc     ItsEven
                  clc
                  Test1   Odd,-1
                  sbb     bx,bx             ;save carry
@@ -830,19 +830,19 @@ jumping.
                  pop     bp
                  ret
  _ScanBuffer     endp
-  
+
                  .data
  Address         macro   X
                  dw      Addr&X
                  endm
-  
+
  LoopEntry       label word
  n               =       Scan
                  REPT Scan
                  Address %n MOD Scan
  n               =       n - 1
                  ENDM
-  
+
                  .fardata WordTable
  include         qscan3.inc                ;built by MAKETAB
                  end
@@ -1151,35 +1151,35 @@ report a "location counter overflow" warning; ignore it.)
 
 ```c
 //  MAKETAB.C — Build QSCAN3.INC for QSCAN3.ASM
- 
+
 #include <stdio.h>
 #include <ctype.h>
- 
+
 #define ChType( c )  (((c) & 0x7f) == '\'' || isalnum((c) & 0x7f))
- 
+
 int NoCarry[ 4 ] = { 0, 0x80, 1, 0x80 };
 int Carry[ 4 ]   = { 1, 0x81, 1, 0x80 };
- 
+
 void main( void )
   {
   int ahChar, alChar, i;
   FILE *t = fopen( "QSCAN3.INC", "wt" );
- 
+
   printf( "Building table.  Please wait..." );
- 
+
   for( ahChar = 0; ahChar < 128; ahChar++ )
     {
     for( alChar = 0; alChar < 256; alChar++ )
       {
       i = ChType( alChar ) * 2 + ChType( ahChar );
- 
+
       if( alChar % 8 == 0 )  fprintf( t, "\ndb %02Xh", NoCarry[ i ] );
       else                   fprintf( t, ",%02Xh", NoCarry[ i ] );
- 
+
       fprintf( t, ",%02Xh", Carry[ i ] );
       }
     }
- 
+
   fclose( t );
   }
 ```

@@ -539,14 +539,14 @@ There are four reasons that many programmers would give for not trying
 to improve on Listing 1.4:
 
   1. The code is already fast enough.
-  
+
   2. The code works, and some people are content with code that
      works, even when it's slow enough to be annoying.
-  
+
   3. The C library is written in optimized assembly, and it's likely
      to be faster than any code that the average programmer could write to
      perform essentially the same function.
-  
+
   4. The C library conveniently handles the buffering of file data,
      and it would be a nuisance to have to implement that capability.
 

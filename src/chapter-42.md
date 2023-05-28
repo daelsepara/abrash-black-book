@@ -780,7 +780,7 @@ VertLoop:
         dec     dx                      ;--DeltaY
         jnz     VertLoop
         jmp     Done                    ;and we're done
-        
+
         align  2
 NotVert:
         cmp     cx,dx                   ;DeltaX == DeltaY?
@@ -920,7 +920,7 @@ NoYAdvance:
  ; BaseColor + (Weighting ^ WeightingComplementMask));
         dec     di              ;--DeltaX
         jnz     XMajorLoop
-        
+
 Done:                           ;we're done with this line
         pop     ds              ;restore C's default data segment
         pop     di              ;restore C's register variables

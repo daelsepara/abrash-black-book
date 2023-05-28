@@ -298,7 +298,7 @@ SaveSignStatusD:
                                 ; part) of the result from dividing the
                                 ; integer part of the dividend
         div     bx              ;second half of 32/16 division
-        
+
 if DIV_ROUNDING_ON EQ 0
         shr     bx,1            ;divisor/2, minus 1 if the divisor is
         adc     bx,0            ; even
@@ -658,7 +658,7 @@ soff=0
 doff=0
         REPT 3                  ;do once each for dest X, Y, and Z
         push    bx              ;remember dest vector pointer
-        push    word ptr [si+soff+2] 
+        push    word ptr [si+soff+2]
         push    word ptr [si+soff]
         push    word ptr [di+2]
         push    word ptr [di]
@@ -668,7 +668,7 @@ doff=0
         mov     bp,dx
 
         push    cx              ;preserve low word of running total
-        push    word ptr [si+soff+4+2] 
+        push    word ptr [si+soff+4+2]
         push    word ptr [si+soff+4]
         push    word ptr [di+4+2]
         push    word ptr [di+4]
@@ -679,7 +679,7 @@ doff=0
         adc     bp,dx
 
         push    cx              ;preserve low word of running total
-        push    word ptr [si+soff+8+2] 
+        push    word ptr [si+soff+8+2]
         push    word ptr [si+soff+8]
         push    word ptr [di+8+2]
         push    word ptr [di+8]
@@ -843,7 +843,7 @@ coff=0                          ;column offset
                                 ; assuming 0 as the bottom entry (no
                                 ; translation)
         push    bx              ;remember dest vector pointer
-        push    word ptr [si+roff+2] 
+        push    word ptr [si+roff+2]
         push    word ptr [si+roff]
         push    word ptr [di+coff+2]
         push    word ptr [di+coff]
@@ -854,7 +854,7 @@ coff=0                          ;column offset
         mov     bp,dx
 
         push    cx              ;preserve low word of running total
-        push    word ptr [si+roff+4+2] 
+        push    word ptr [si+roff+4+2]
         push    word ptr [si+roff+4]
         push    word ptr [di+coff+16+2]
         push    word ptr [di+coff+16]
@@ -866,7 +866,7 @@ coff=0                          ;column offset
         adc     bp,dx
 
         push    cx              ;preserve low word of running total
-        push    word ptr [si+roff+8+2] 
+        push    word ptr [si+roff+8+2]
         push    word ptr [si+roff+8]
         push    word ptr [di+coff+32+2]
         push    word ptr [di+coff+32]
@@ -886,7 +886,7 @@ coff=coff+4                     ;point to next col in xform2 & dest
                                 ; 1 as the bottom entry, causing
                                 ; translation to be performed
         push    bx              ;remember dest vector pointer
-        push    word ptr [si+roff+2] 
+        push    word ptr [si+roff+2]
         push    word ptr [si+roff]
         push    word ptr [di+coff+2]
         push    word ptr [di+coff]
@@ -897,7 +897,7 @@ coff=coff+4                     ;point to next col in xform2 & dest
         mov     bp,dx
 
         push    cx              ;preserve low word of running total
-        push    word ptr [si+roff+4+2] 
+        push    word ptr [si+roff+4+2]
         push    word ptr [si+roff+4]
         push    word ptr [di+coff+16+2]
         push    word ptr [di+coff+16]
@@ -909,7 +909,7 @@ coff=coff+4                     ;point to next col in xform2 & dest
         adc     bp,dx
 
         push    cx              ;preserve low word of running total
-        push    word ptr [si+roff+8+2] 
+        push    word ptr [si+roff+8+2]
         push    word ptr [si+roff+8]
         push    word ptr [di+coff+32+2]
         push    word ptr [di+coff+32]

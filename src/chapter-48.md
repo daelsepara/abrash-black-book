@@ -239,7 +239,7 @@ DownloadPatternLoop:
         and     bx,0003h                  ;look up right edge plane
         mov     al,RightClipPlaneMask[bx] ; mask to clip
         mov     bx,ax                     ;put the masks in BX
-        
+
         mov     cx,[bp+EndX]              ;calculate # of addresses across rect
         mov     ax,[bp+StartX]
         cmp     cx,ax
@@ -489,7 +489,7 @@ _CopyScreenToScreenX proc    near
         and     bx,0003h           ;look up right-edge plane
         mov     al,RightClipPlaneMask[bx] ; mask to clip
         mov     bx,ax              ;put the masks in BX
-        
+
         mov     cx,[bp+SourceEndX] ;calculate # of addresses across
         mov     ax,[bp+SourceStartX] ; rect
         cmp     cx,ax
@@ -500,7 +500,7 @@ _CopyScreenToScreenX proc    near
         shr     cx,1
         shr     cx,1               ;# of addresses across rectangle to copy - 1
         jnz     MasksSet           ;there's more than one address to draw
-        and     bh,bl              ;there's only one address, so combine the 
+        and     bh,bl              ;there's only one address, so combine the
                                    ; left- and right-edge clip masks
 MasksSet:
         mov     ax,[bp+SourceEndY]
@@ -672,7 +672,7 @@ _CopySystemToScreenX proc    near
         add     ax,[bp+SourceStartX]
         add     ax,[bp+SourcePtr]      ;offset of first source rect pixel
         mov     si,ax                  ; in DS
-        
+
         mov     ax,[bp+DestBitmapWidth]
         shr     ax,1                   ;convert to width in addresses
         shr     ax,1
@@ -686,9 +686,9 @@ _CopySystemToScreenX proc    near
         add     di,[bp+DestPageBase]    ;offset of first dest rect pixel
                                         ; in display memory
         and     cl,011b                 ;CL = first dest pixel's plane
-        mov     al,11h                  ;upper nibble comes into play when 
+        mov     al,11h                  ;upper nibble comes into play when
                                         ; plane wraps from 3 back to 0
-        shl     al,cl                   ;set the bit for the first dest pixel's 
+        shl     al,cl                   ;set the bit for the first dest pixel's
         mov     [bp+LeftMask],al        ; plane in each nibble to 1
 
         mov     cx,[bp+SourceEndX]      ;calculate # of pixels across

@@ -164,10 +164,10 @@ visualize its operation without actually seeing it.
 >
 > --------- -----------------------------------------------------------
 > WIDTH 32  Sets the width of the life grid to 96 cells (divided by 3).
-> HEIGHT 96 Sets the height of the life grid to 96 cells.              
-> NOCOUNTER Turns off the generation counter (optional).               
-> NODRAW    Turns off drawing of the cell map (optional).              
-> GEN 1000  Calculates 1,000 generations (optional).                   
+> HEIGHT 96 Sets the height of the life grid to 96 cells.
+> NOCOUNTER Turns off the generation counter (optional).
+> NODRAW    Turns off drawing of the cell map (optional).
+> GEN 1000  Calculates 1,000 generations (optional).
 > --------- -----------------------------------------------------------
 >
 > These *must* be in uppercase. For example, the minimum you really need

@@ -232,11 +232,11 @@ fixed. Moreover, a great deal of graphics software now uses word
 >
 > Alternatively, the GC Index register could initially be set to point to
 > the Bit Mask register with
-> 
+>
 >     MOV     DX,03CEH  ;point to GC Index register
 >     MOV     AL,8      ;internal index of Bit Mask register
 >     OUT     DX,AL     ;set GC Index register
->     INC     DX        ;point to GC Data register> 
+>     INC     DX        ;point to GC Data register>
 >
 > and then the Bit Mask register could be set repeatedly with the
 > byte-size `OUT` instruction

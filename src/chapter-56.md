@@ -330,9 +330,9 @@ extern void DrawTexturedPolygon(PointListHeader *, Point *, TextureMap *);
 ```c
 /* Draws a bitmap, mapped to a convex polygon (draws a texture-mapped polygon).
    "Convex" means that every horizontal line drawn through the polygon at any
-   point would cross exactly two active edges (neither horizontal lines nor 
-   zero-length edges count as active edges; both are acceptable anywhere in 
-   the polygon), and that the right & left edges never cross. Nonconvex 
+   point would cross exactly two active edges (neither horizontal lines nor
+   zero-length edges count as active edges; both are acceptable anywhere in
+   the polygon), and that the right & left edges never cross. Nonconvex
    polygons won't be drawn properly. Can't fail. */
 #include <stdio.h>
 #include <math.h>
@@ -389,7 +389,7 @@ void DrawTexturedPolygon(PointListHeader * Polygon, Point * TexVerts,
    }
    /* Scan through the destination polygon vertices and find the top of the
       left and right edges, taking advantage of our knowledge that vertices run
-      in a clockwise direction (else this polygon wouldn't be visible due to 
+      in a clockwise direction (else this polygon wouldn't be visible due to
       backface removal) */
    MinY = 32767;
    MaxY = -32768;

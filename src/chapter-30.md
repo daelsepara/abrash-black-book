@@ -512,7 +512,7 @@ Code    ends
 
 #### VGA and EGA Split-Screen Operation Don't Mix
 
-You must set the `IS_VGA` equate at the start of Listing 30.1 
+You must set the `IS_VGA` equate at the start of Listing 30.1
 correctly for the adapter the code will run on in order for the program
 to perform properly. This equate determines how the upper bits of the
 split screen start scan line are set by `SetSplitScreenRow`. If

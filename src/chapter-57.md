@@ -301,7 +301,7 @@ so this is the appropriate place to optimize.
 ; at all angles.  This routine is specific to 320-pixel-wide planar
 ; (non-chain4) 256-color modes, such as mode X, which is a planar
 ; (non-chain4) 256-color mode with a resolution of 320x240.
-; C near-callable as: 
+; C near-callable as:
 ;   void ScanOutLine(EdgeScan * LeftEdge, EdgeScan * RightEdge);
 ; Tested with TASM 3.0.
 

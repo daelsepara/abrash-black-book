@@ -405,7 +405,7 @@ CONSTANT_TO_INDEXED_REGISTER SC_INDEX,MAP_MASK,0fh
         sub    di,di
         mov    ax,di
         mov    cx,8000h   ;# of words in 64K
-        cld    
+        cld
         rep    stosw      ;clear all of display memory
 ;
 ; Tweak the mode to 320x400 256-color mode by not scanning each
@@ -438,7 +438,7 @@ CONSTANT_TO_INDEXED_REGISTER SC_INDEX,MAP_MASK,0fh
                                  ; scanned for video data in a purely
                                  ; linear way, just as in modes 10h and 12h
         out    dx,al
-        ret 
+        ret
 Set320By400Mode        endp
 ;
 ; Draws a pixel in the specified color at the specified

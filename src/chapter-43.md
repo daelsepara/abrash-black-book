@@ -494,7 +494,7 @@ Start   proc    near
         pop     es                   ; the palette
         mov     dx,offset Colors     ; settings
         int     10h                  ;call the BIOS to
-                                     ; set the palette                       
+                                     ; set the palette
 ;
 ; Draw the static backdrop in plane 3. All the moving images
 ; will appear to be in front of this backdrop, since plane 3

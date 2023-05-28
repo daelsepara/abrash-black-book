@@ -105,7 +105,7 @@ test whether a polygon is appropriately monotone.
 
 ```c
 /* Returns 1 if polygon described by passed-in vertex list is monotone with
-respect to a vertical line, 0 otherwise. Doesn't matter if polygon is simple 
+respect to a vertical line, 0 otherwise. Doesn't matter if polygon is simple
 (non-self-intersecting) or not. Tested with Borland C++ in small model. */
 
 #include "polygon.h"
@@ -131,7 +131,7 @@ int PolygonIsMonotoneVertical(struct PointListHeader * VertexList)
 
    if (i == (Length-1)) return(1);  /* polygon is a flat line */
 
-   /* Now count Y reversals. Might miss one reversal, at the last vertex, but 
+   /* Now count Y reversals. Might miss one reversal, at the last vertex, but
       because reversal counts must be even, being off by one isn't a problem */
    do {
       if ((DeltaYSign = SIGNUM(VertexPtr[i].Y - VertexPtr[i+1].Y))
@@ -161,21 +161,21 @@ from Chapter 39) remains the same, and so is not shown again here.
 
 ```c
 /* Color-fills a convex polygon. All vertices are offset by (XOffset, YOffset).
-"Convex" means "monotone with respect to a vertical line"; that is, every 
-horizontal line drawn through the polygon at any point would cross exactly two 
-active edges (neither horizontal lines nor zero-length edges count as active 
-edges; both are acceptable anywhere in the polygon). Right & left edges may 
-cross (polygons may be nonsimple). Polygons that are not convex according to 
-this definition won't be drawn properly. (Yes, "convex" is a lousy name for 
-this type of polygon, but it's convenient; use "monotone-vertical" if it makes 
+"Convex" means "monotone with respect to a vertical line"; that is, every
+horizontal line drawn through the polygon at any point would cross exactly two
+active edges (neither horizontal lines nor zero-length edges count as active
+edges; both are acceptable anywhere in the polygon). Right & left edges may
+cross (polygons may be nonsimple). Polygons that are not convex according to
+this definition won't be drawn properly. (Yes, "convex" is a lousy name for
+this type of polygon, but it's convenient; use "monotone-vertical" if it makes
 you happier!)
 *******************************************************************
 NOTE: the low-level drawing routine, DrawHorizontalLineList, must be able to
-reverse the edges, if necessary to make the correct edge left edge. It must 
+reverse the edges, if necessary to make the correct edge left edge. It must
 also expect right edge to be specified in +1 format (the X coordinate is 1 past
-highest coordinate to draw). In both respects, this differs from low-level 
+highest coordinate to draw). In both respects, this differs from low-level
 drawing routines presented in earlier columns; changes are necessary to make it
-possible to draw nonsimple monotone-vertical polygons; that in turn makes it 
+possible to draw nonsimple monotone-vertical polygons; that in turn makes it
 possible to use Jim Kent's test for monotone-vertical polygons.
 *******************************************************************
 Returns 1 for success, 0 if memory allocation failed */
@@ -280,12 +280,12 @@ int FillMonotoneVerticalPolygon(struct PointListHeader * VertexList,
 **LISTING 41.3 L41-3.ASM**
 
 ```nasm
-; Draws all pixels in list of horizontal lines passed in, in mode 13h, VGA's 
+; Draws all pixels in list of horizontal lines passed in, in mode 13h, VGA's
 ; 320x200 256-color mode. Uses REP STOS to fill each line.
 ; ******************************************************************
-; NOTE: is able to reverse the X coords for a scan line, if necessary, to make 
+; NOTE: is able to reverse the X coords for a scan line, if necessary, to make
 ; XStart < XEnd. Expects whichever edge is rightmost on any scan line to be in
-; +1 format; that is, XEnd is 1 greater than rightmost pixel to draw. If 
+; +1 format; that is, XEnd is 1 greater than rightmost pixel to draw. If
 ; XStart == XEnd, nothing is drawn on that scan line.
 ; ******************************************************************
 ; C near-callable as:
@@ -684,8 +684,8 @@ struct Point {
    int Y;   /* Y coordinate */
 };
 
-/* Describes series of points (used to store a list of vertices that describe 
-a polygon; each vertex is assumed to connect to the two adjacent vertices, and 
+/* Describes series of points (used to store a list of vertices that describe
+a polygon; each vertex is assumed to connect to the two adjacent vertices, and
 last vertex is assumed to connect to the first) */
 struct PointListHeader {
    int Length;                /* # of points */
@@ -698,8 +698,8 @@ struct HLine {
    int XEnd;   /* X coordinate of rightmost pixel in line */
 };
 
-/* Describes a Length-long series of horizontal lines, all assumed to be on 
-contiguous scan lines starting at YStart and proceeding downward (used to 
+/* Describes a Length-long series of horizontal lines, all assumed to be on
+contiguous scan lines starting at YStart and proceeding downward (used to
 describe scan-converted polygon to low-level hardware-dependent drawing code) */
 struct HLineList {
    int Length;                /* # of horizontal lines */

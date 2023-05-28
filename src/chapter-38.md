@@ -477,7 +477,7 @@ static void DrawPixel(int X, int Y, int Color) {
    Polygon.Length = sizeof(PointList)/sizeof(struct Point); \
    Polygon.PointPtr = PointList;                            \
    FillConvexPolygon(&Polygon, Color, X, Y);
-  
+
 void main(void);
 extern int FillConvexPolygon(struct PointListHeader *, int, int, int);
 
